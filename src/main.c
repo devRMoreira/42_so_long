@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/01/10 19:59:10 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:35:31 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,63 @@
 
 int main(int argc, char **argv)
 {
-	int		fd;
-	int		i;
-	int		j;
-	char	*fn;
-	char	*buffer;
-	char	**map;
-
 	if(argc >= 2)
 	{
-		fn = ft_strjoin("./map/", argv[1]);
-		fd = open(fn, O_RDONLY);
+		parse_map(argv[1]);
+	}
+	else
+		ft_printf("Error\n");
 
-		if(fd < 1)
-			return ft_printf("Error \n");
-
-		buffer = ft_get_next_line(fd);
-		i = 1;
-		j = 0;
-
-		while(buffer != NULL)
-		{
-			buffer = ft_get_next_line(fd);
-			i++;
-		}
-		close(fd);
-
-		map = malloc(sizeof(char *) * i);
-		map[--i] = "\0";
-		fd = open(fn, O_RDONLY);
-		while(j < i)
-		{
-			map[j] = ft_get_next_line(fd);
-			j++;
-		}
-		j--;
-
-		while(j >= 0)
-		{
-			ft_printf("%s", map[j]);
-			j--;
-
-		}
-
-
-	} else
-			return ft_printf("Error \n");
 }
 
 
+// ! og map parse
+	// int		fd;
+	// int		i;
+	// int		j;
+	// char	*fn;
+	// char	*buffer;
+	// char	**map;
+	// if(argc >= 2)
+	// {
+	// fn = ft_strjoin("./map/", argv[1]);
+	// 	fd = open(fn, O_RDONLY);
+
+	// 	if(fd < 1)
+	// 		return (free(fn),ft_printf("Error \n"));
+
+	// 	buffer = ft_get_next_line(fd);
+	// 	i = 1;
+	// 	j = 0;
+
+	// 	while(buffer != NULL)
+	// 	{
+	// 		buffer = ft_get_next_line(fd);
+	// 		i++;
+	// 	}
+	// 	close(fd);
+	// 	free(buffer);
+
+	// 	map = malloc(sizeof(char *) * i);
+	// 	map[--i] = "\0";
+	// 	fd = open(fn, O_RDONLY);
+	// 	while(j < i)
+	// 	{
+	// 		map[j] = ft_get_next_line(fd);
+	// 		j++;
+	// 	}
+	// 	j--;
+
+	// 	while(j >= 0)
+	// 	{
+	// 		ft_printf("%s", map[j]);
+	// 		j--;
+
+	// 	}
 
 
+	// } else
+	// 		return ft_printf("Error \n");
 
 // ! mlx docs main
 // typedef struct s_data {

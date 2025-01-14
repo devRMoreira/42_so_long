@@ -1,3 +1,7 @@
+<!--
+WSL Compile
+cc src/*.c includes/so_long.h lib/libft/*.c lib/libft/*.h
+ -->
 # Map checklist
 
 Does the map file exist ? ✔

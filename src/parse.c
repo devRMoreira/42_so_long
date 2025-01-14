@@ -6,11 +6,17 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:15:09 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/01/10 17:15:26 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:59:07 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int parse_map()
+#include "../includes/so_long.h"
+
+int parse_map(char *file)
 {
+	char	**map;
+
+	map = get_map(file);
 	
+	return 0;
 }

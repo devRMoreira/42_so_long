@@ -6,7 +6,7 @@
 #    By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 14:57:41 by rimagalh          #+#    #+#              #
-#    Updated: 2025/01/09 15:47:04 by rimagalh         ###   ########.fr        #
+#    Updated: 2025/01/14 17:42:52 by rimagalh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = so_long
 
 SRC = src/main.c \
+	src/parse.c \
+	src/parse_utils.c \
 
 OBJ = $(SRC:.c=.o)
 
