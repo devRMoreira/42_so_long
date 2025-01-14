@@ -1,6 +1,6 @@
 # Map checklist
 
-Does the map file exist ?
+Does the map file exist ? ✔
 
 Is the map rectangular ?
 
