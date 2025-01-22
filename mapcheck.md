@@ -6,15 +6,15 @@ cc src/*.c includes/so_long.h lib/libft/*.c lib/libft/*.h
 
 Does the map file exist ? ✔
 
-Is the map rectangular ?
+Is the map rectangular ? ✔
 
-All the lines should be the same length.
+All the lines should be the same length. ✔
 
-Is there something in the map file ?
+Is there something in the map file ? ✔
 
-Is the map enclosed in walls ?
+Is the map enclosed in walls ? ✔
 
-	Check the first and last lines and columns, they should all be 1
+	Check the first and last lines and columns, they should all be 1 ✔
 
 Is there only one exit ?
 

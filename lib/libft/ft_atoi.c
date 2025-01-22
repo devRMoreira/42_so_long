@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:03:35 by rimagalh          #+#    #+#             */
-/*   Updated: 2024/12/10 18:26:27 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:03:22 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_atoi(const char *nptr)
 	int	i;
 	int	neg;
 
-	if(!nptr)
-		return 0;
+	if (!nptr)
+		return (0);
 	i = 0;
 	neg = 1;
 	sum = 0;

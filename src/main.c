@@ -6,24 +6,30 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/01/14 17:35:31 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/01/22 17:54:58 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int main(int argc, char **argv)
+void	print_error(void)
 {
-	if(argc >= 2)
-	{
-		parse_map(argv[1]);
-	}
-	else
-		ft_printf("Error\n");
-
+	ft_printf("Error\n");
 }
 
+int	main(int argc, char **argv)
+{
+	char	**map;
 
+	if (argc >= 2)
+	{
+		map = parse_map(argv[1]);
+		if (!map)
+			return (print_error(), 1);
+	}
+	else
+		return (print_error(), 1);
+}
 // ! og map parse
 	// int		fd;
 	// int		i;
@@ -67,7 +73,6 @@ int main(int argc, char **argv)
 	// 		j--;
 
 	// 	}
-
 
 	// } else
 	// 		return ft_printf("Error \n");
