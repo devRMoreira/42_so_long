@@ -54,22 +54,24 @@ char	**get_map(char *file)
 	int		fd;
 	int		size;
 	int		i;
-	char	*fn;
 	char	**map;
+	char	*temp;
 
-	fn = ft_strjoin("./map/", file);
-	size = get_total_lines(fn);
+	size = get_total_lines(file);
 	if (size == -1)
-		return (free(fn), NULL);
-	map = malloc(sizeof(char *) * size);
+		return (NULL);
+	map = malloc(sizeof(char *) * size + 1);
 	if (!map)
-		return (free(fn), NULL);
-	map[size - 1] = NULL;
-	fd = open(fn, O_RDONLY);
+		return (NULL);
+	fd = open(file, O_RDONLY);
+	map[size + 1] = NULL;
+	i = 0;
 	while (i < size)
 	{
-		map[i] = ft_get_next_line(fd);
+		temp = ft_get_next_line(fd);
+		ft_strlcat(map[i], temp, ft_strlen(temp) - 1);
+		free(temp);
 		i++;
 	}
-	return (free(fn), map);
+	return (map);
 }

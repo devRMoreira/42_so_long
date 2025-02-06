@@ -6,26 +6,34 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:20:12 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/01/22 18:41:04 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:16:46 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+// ! map chars
+// 0 for an empty space,
+// 1 for a wall,
+// C for a collectible,
+// E for a map exit,
+// P for the player’s starting position.
 
 int	valid_char(char c)
 {
-	if (c == '0')
-		return (1);
-	else if (c == '1')
-		return (1);
-	else if (c == 'C')
-		return (1);
-	else if (c == 'E')
-		return (1);
-	else if (c == 'P')
-		return (1);
-	else
-		return (0);
+	char	*max;
+	char	*min;
+	int		i;
+
+	max = "01CEP";
+	min = "01cep";
+	i = 0;
+	while(max[i])
+	{
+		if(c == max[i] || c == min[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 int	check_walls(char **map)

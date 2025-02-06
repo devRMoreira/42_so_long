@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:20:15 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/01/22 18:49:10 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/06 16:19:39 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,9 @@ static int	valid_size(char **map)
 
 int	valid_map(char **map)
 {
-	int	res;
-
-	res = valid_size(map);
-	if (!res)
+	if (!valid_size(map))
 		return (0);
-	res = valid_cells(map);
-	if (!res)
+	if (!valid_cells(map))
 		return (0);
 	return (1);
 }
