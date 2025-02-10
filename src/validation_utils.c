@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:20:12 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/10 14:17:34 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:54:47 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int check_char(char c)
 		return (1);
 	if(c == 'P')
 		return (2);
+	if(c == '0' || c == '1')
+		return (3);
 	return (-1);
 }
 
@@ -39,11 +41,9 @@ static int *count_chars(char **map)
 {
 	int i;
 	int j;
-	char	*chars;
 	int		*amount;
 
-	amount = ft_calloc(3, sizeof(int));
-	chars = "01CEP";
+	amount = ft_calloc(4, sizeof(int));
 	i = -1;
 	while(map[++i])
 	{
@@ -57,6 +57,8 @@ static int *count_chars(char **map)
 				else
 					amount[check_char(map[i][j])]++;
 			}
+			else
+				return NULL;
 			j++;
 		}
 	}
@@ -71,6 +73,8 @@ int valid_chars(char **map)
 	while(map[++i])
 		ft_striteri(map[i], uppercase);
 	amount = count_chars(map);
+	if(!amount)
+		return (print_error("Invalid char found"), 0);
 	if(amount[0] < 1)
 		return (print_error("Invalid collectable amount"), free(amount), 0);
 	if(amount[1] != 1)

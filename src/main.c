@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/10 14:22:37 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:23:59 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 // 	int	bpp;
 // 	int linelen;
 // 	int endian;
-// } 	t_data;
+// } 	t_data;dd
 
 // void pxlput(t_data *data, int x, int y, int color)
 // {

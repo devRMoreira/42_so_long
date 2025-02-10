@@ -38,7 +38,7 @@ Here is a simple valid map:
 1111111111111
 
 • You have to check if there’s a valid path in the map.
-• You must be able to parse any kind of map, as long as it respects the above rules.
+
 
 • Another example of a minimal .ber map:
 1111111111111111111111111111111111
