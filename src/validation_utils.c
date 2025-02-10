@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:20:12 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/06 16:16:46 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:17:34 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,26 +17,71 @@
 // C for a collectible,
 // E for a map exit,
 // P for the player’s starting position.
-
-int	valid_char(char c)
+static void uppercase(unsigned int i, char *c)
 {
-	char	*max;
-	char	*min;
-	int		i;
-
-	max = "01CEP";
-	min = "01cep";
-	i = 0;
-	while(max[i])
-	{
-		if(c == max[i] || c == min[i])
-			return (1);
-		i++;
-	}
-	return (0);
+	(void)i;
+	if (*c >= 'a' && *c <= 'z')
+		*c = *c - 32;
 }
 
-int	check_walls(char **map)
+static int check_char(char c)
+{
+	if(c == 'C')
+		return (0);
+	if(c == 'E')
+		return (1);
+	if(c == 'P')
+		return (2);
+	return (-1);
+}
+
+static int *count_chars(char **map)
+{
+	int i;
+	int j;
+	char	*chars;
+	int		*amount;
+
+	amount = ft_calloc(3, sizeof(int));
+	chars = "01CEP";
+	i = -1;
+	while(map[++i])
+	{
+		j = 0;
+		while(map[i][j])
+		{
+			if(check_char(map[i][j]) != -1)
+			{
+				if(!amount[check_char(map[i][j])])
+					amount[check_char(map[i][j])] = 1;
+				else
+					amount[check_char(map[i][j])]++;
+			}
+			j++;
+		}
+	}
+	return (amount);
+}
+
+int valid_chars(char **map)
+{
+	int i;
+	int *amount;
+	i = -1;
+	while(map[++i])
+		ft_striteri(map[i], uppercase);
+	amount = count_chars(map);
+	if(amount[0] < 1)
+		return (print_error("Invalid collectable amount"), free(amount), 0);
+	if(amount[1] != 1)
+		return (print_error("Invalid exit amount"), free(amount), 0);
+	if(amount[2] != 1)
+		return (print_error("Invalid player amount"), free(amount), 0);
+	free(amount);
+	return (1);
+}
+
+int	valid_walls(char **map)
 {
 	int i;
 	int j;
@@ -52,6 +97,7 @@ int	check_walls(char **map)
 			return (0);
 		j++;
 	}
+	j--;
 	while (i >= 0)
 	{
 		if(map[i][0] != '1' || map[i][j] != '1' )

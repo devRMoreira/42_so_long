@@ -6,15 +6,15 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/01/22 17:54:58 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:22:37 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	print_error(void)
+void	print_error(char *descriptor)
 {
-	ft_printf("Error\n");
+	ft_printf("Error\n%s\n", descriptor);
 }
 
 int	main(int argc, char **argv)
@@ -25,57 +25,11 @@ int	main(int argc, char **argv)
 	{
 		map = parse_map(argv[1]);
 		if (!map)
-			return (print_error(), 1);
+			return (1);
 	}
 	else
-		return (print_error(), 1);
+		return (print_error("Missing argument"), 1);
 }
-// ! og map parse
-	// int		fd;
-	// int		i;
-	// int		j;
-	// char	*fn;
-	// char	*buffer;
-	// char	**map;
-	// if(argc >= 2)
-	// {
-	// fn = ft_strjoin("./map/", argv[1]);
-	// 	fd = open(fn, O_RDONLY);
-
-	// 	if(fd < 1)
-	// 		return (free(fn),ft_printf("Error \n"));
-
-	// 	buffer = ft_get_next_line(fd);
-	// 	i = 1;
-	// 	j = 0;
-
-	// 	while(buffer != NULL)
-	// 	{
-	// 		buffer = ft_get_next_line(fd);
-	// 		i++;
-	// 	}
-	// 	close(fd);
-	// 	free(buffer);
-
-	// 	map = malloc(sizeof(char *) * i);
-	// 	map[--i] = "\0";
-	// 	fd = open(fn, O_RDONLY);
-	// 	while(j < i)
-	// 	{
-	// 		map[j] = ft_get_next_line(fd);
-	// 		j++;
-	// 	}
-	// 	j--;
-
-	// 	while(j >= 0)
-	// 	{
-	// 		ft_printf("%s", map[j]);
-	// 		j--;
-
-	// 	}
-
-	// } else
-	// 		return ft_printf("Error \n");
 
 // ! mlx docs main
 // typedef struct s_data {

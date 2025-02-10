@@ -5,6 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/10 11:41:42 by rimagalh          #+#    #+#             */
+/*   Updated: 2025/02/10 11:41:42 by rimagalh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 17:21:48 by rimagalh          #+#    #+#             */
 /*   Updated: 2025/01/14 17:21:48 by rimagalh         ###   ########.fr       */
 /*                                                                            */
@@ -28,50 +40,63 @@ void	free_map(char **map)
 	}
 }
 
-int	get_total_lines(char *fn)
+static char *fetch_line(int fd)
 {
-	int		fd;
-	int		i;
-	char	*buffer;
+	char *n_pos;
+	char *temp;
 
-	i = 1;
-	fd = open(fn, O_RDONLY);
-	if (fd < 1)
-		return (-1);
-	buffer = ft_get_next_line(fd);
-	while (buffer != NULL)
+	temp = ft_get_next_line(fd);
+	if(temp)
 	{
-		buffer = ft_get_next_line(fd);
+		n_pos = ft_strchr(temp, '\n');
+		if(n_pos)
+			*n_pos = '\0';
+	}
+	return (temp);
+}
+
+static int get_total_lines(char *file)
+{
+	int fd;
+	int i;
+	char* temp;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (print_error("Invalid file"), -1);
+	temp = ft_get_next_line(fd);
+	i = 1;
+	while (temp != NULL)
+	{
+		free(temp);
+		temp = ft_get_next_line(fd);
 		i++;
 	}
 	close(fd);
-	free(buffer);
+	free(temp);
 	return (i);
 }
 
 char	**get_map(char *file)
 {
-	int		fd;
-	int		size;
-	int		i;
-	char	**map;
-	char	*temp;
+	int i;
+	int fd;
+	int lines;
+	char **map;
 
-	size = get_total_lines(file);
-	if (size == -1)
-		return (NULL);
-	map = malloc(sizeof(char *) * size + 1);
-	if (!map)
-		return (NULL);
+	lines = get_total_lines(file);
+	if(lines < 3)
+		return (print_error("Invalid line amount"), NULL);
+	map = malloc(sizeof(char *) * (lines + 1));
+	if(!map)
+		return (print_error("Malloc failure"), NULL);
 	fd = open(file, O_RDONLY);
-	map[size + 1] = NULL;
-	i = 0;
-	while (i < size)
-	{
-		temp = ft_get_next_line(fd);
-		ft_strlcat(map[i], temp, ft_strlen(temp) - 1);
-		free(temp);
-		i++;
-	}
+	if(fd < 0)
+		return (print_error("Invalid file"), NULL);
+	i = -1;
+	while (++i < lines)
+		map[i] = fetch_line(fd);
+	map[i] = NULL;
+	close(fd);
 	return (map);
 }

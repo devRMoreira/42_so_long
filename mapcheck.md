@@ -14,20 +14,11 @@ Is there something in the map file ? ✔
 
 Is the map enclosed in walls ? ✔
 
-	Check the first and last lines and columns, they should all be 1 ✔
+Is there only one exit ? ✔
 
-Is there only one exit ?
+Is there only one start position ? ✔
 
-	Simply count how many E you find on the map.
-
-Is there only one start position ?
-
-	Simply count how many P you find on the map.
-
-Is there at least one collectibles ?
-
-	Simply count how many C you find on the map.
-
+Is there at least one collectibles ? ✔
 
 #### Subject
 The map has to be constructed with 3 components: walls, collectibles, and free
@@ -46,15 +37,6 @@ Here is a simple valid map:
 1P0011E000001
 1111111111111
 
-• The map must contain 1 exit, at least 1 collectible, and 1 starting position to
-be valid.
-
-If the map contains a duplicates characters (exit/start), you should
-display an error message.
-
-• The map must be rectangular.
-• The map must be closed/surrounded by walls. If it’s not, the program must return
-an error.
 • You have to check if there’s a valid path in the map.
 • You must be able to parse any kind of map, as long as it respects the above rules.
 
@@ -65,7 +47,3 @@ an error.
 1010010010101010001001000000010101
 1P0000000C00C0000000000000000000C1
 1111111111111111111111111111111111
-
-• If any misconfiguration of any kind is encountered in the file, the program must
-exit in a clean way, and return "Error\n" followed by an explicit error message of
-your choice.
