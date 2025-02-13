@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/10 14:23:59 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:05:00 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@ void	print_error(char *descriptor)
 	ft_printf("Error\n%s\n", descriptor);
 }
 
-int	main(int argc, char **argv)
-{
-	char	**map;
+// int	main(int argc, char **argv)
+// {
+// 	t_data map_data;
 
-	if (argc >= 2)
-	{
-		map = parse_map(argv[1]);
-		if (!map)
-			return (1);
-	}
-	else
-		return (print_error("Missing argument"), 1);
-}
+
+// 	if (argc >= 2)
+// 	{
+// 		map_data.map = parse_map(argv[1]);
+// 		if (!map_data.map)
+// 			return (1);
+// 	}
+// 	else
+// 		return (print_error("Missing argument"), 1);
+// }
 
 // ! mlx docs main
 // typedef struct s_data {
@@ -38,7 +39,7 @@ int	main(int argc, char **argv)
 // 	int	bpp;
 // 	int linelen;
 // 	int endian;
-// } 	t_data;dd
+// } 	t_data;
 
 // void pxlput(t_data *data, int x, int y, int color)
 // {

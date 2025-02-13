@@ -6,12 +6,12 @@
 #    By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 14:57:41 by rimagalh          #+#    #+#              #
-#    Updated: 2025/01/22 18:43:08 by rimagalh         ###   ########.fr        #
+#    Updated: 2025/02/13 15:04:17 by rimagalh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
 
 NAME = so_long
 
@@ -20,6 +20,8 @@ SRC = src/main.c \
 	src/parse_utils.c \
 	src/validation.c \
 	src/validation_utils.c \
+	src/flood.c \
+	src/flood_utils.c
 
 OBJ = $(SRC:.c=.o)
 
