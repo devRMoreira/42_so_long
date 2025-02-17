@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/13 15:05:00 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:42:00 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,50 @@ void	print_error(char *descriptor)
 	ft_printf("Error\n%s\n", descriptor);
 }
 
-// int	main(int argc, char **argv)
-// {
-// 	t_data map_data;
+int on_destroy(t_data *game)
+{
+	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+	mlx_destroy_display(game->mlx_ptr);
+	free(game->mlx_ptr);
+	exit(0);
+	return (0);
+}
 
+int on_keypress(int keysym, t_data *data)
+{
+	(void)data;
+	printf("Pressed key: %d\\n", keysym);
+	return (0);
+}
 
-// 	if (argc >= 2)
-// 	{
-// 		map_data.map = parse_map(argv[1]);
-// 		if (!map_data.map)
-// 			return (1);
-// 	}
-// 	else
-// 		return (print_error("Missing argument"), 1);
-// }
+int	main(int argc, char **argv)
+{
+	t_data game;
+
+	game.mlx_ptr = mlx_init();
+	if (!game.mlx_ptr)
+		return (1);
+
+	// if (argc >= 2)
+	// {
+	// 	game.map = parse_map(argv[1]);
+	// 	if (!game.map)
+	// 		return (1);
+	// }
+	// else
+	// 	return (print_error("Missing argument"), 1);
+
+	game.win_ptr = mlx_new_window(game.mlx_ptr, 600, 400, "Window Name");
+
+	if(!game.win_ptr)
+		return (free(game.mlx_ptr), 1);
+
+	mlx_hook(game.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &game);
+	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &game);
+
+	mlx_loop(game.mlx_ptr);
+	return (0);
+}
 
 // ! mlx docs main
 // typedef struct s_data {
