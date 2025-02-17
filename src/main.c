@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/17 15:42:00 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/17 21:37:04 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_error(char *descriptor)
 	ft_printf("Error\n%s\n", descriptor);
 }
 
-int on_destroy(t_data *game)
+int quit_game(t_data *game)
 {
 	mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	mlx_destroy_display(game->mlx_ptr);
@@ -26,10 +26,25 @@ int on_destroy(t_data *game)
 	return (0);
 }
 
-int on_keypress(int keysym, t_data *data)
+int keypress(int keysym, t_data *game)
 {
-	(void)data;
-	printf("Pressed key: %d\\n", keysym);
+
+	ft_printf("Pressed key: %d\n", keysym);
+
+	if (keysym == 65361) //left
+		// player_move();
+
+	if (keysym == 65362) //up
+		// player_move();
+
+	if (keysym == 65363) //right
+		// player_move();
+
+	if (keysym == 65364) //down
+		// player_move();
+
+	if (keysym == 65307) //ESC
+		// quit_game(game);
 	return (0);
 }
 
@@ -55,8 +70,8 @@ int	main(int argc, char **argv)
 	if(!game.win_ptr)
 		return (free(game.mlx_ptr), 1);
 
-	mlx_hook(game.win_ptr, KeyRelease, KeyReleaseMask, &on_keypress, &game);
-	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, &on_destroy, &game);
+	mlx_hook(game.win_ptr, KeyRelease, KeyReleaseMask, &keypress, &game);
+	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, &quit_game, &game);
 
 	mlx_loop(game.mlx_ptr);
 	return (0);
