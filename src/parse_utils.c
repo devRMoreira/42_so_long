@@ -63,7 +63,7 @@ static int get_total_lines(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		return (print_error("Invalid file"), -1);
+		return (-1);
 	temp = ft_get_next_line(fd);
 	i = 1;
 	while (temp != NULL)
@@ -86,7 +86,7 @@ char	**get_map(char *file)
 
 	lines = get_total_lines(file);
 	if(lines < 3)
-		return (print_error("Invalid line amount"), NULL);
+		return (print_error("Invalid map"), NULL);
 	map = malloc(sizeof(char *) * (lines + 1));
 	if(!map)
 		return (print_error("Malloc failure"), NULL);
