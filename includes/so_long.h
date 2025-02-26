@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:59:29 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/26 13:19:31 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:47:00 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int		valid_chars(char **map);
 int		is_lower(int c);
 int		is_completable(char **map);
 void	print_map(char **map);
+int get_collects(char **map);
 
 #endif

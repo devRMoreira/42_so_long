@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/26 13:36:03 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:46:47 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void print_map(char **map) {
 
 void init_struct(t_data *game)
 {
-	game->total_collects = 0;
+	game->player = get_player_pos(game->map);
+	game->total_collects = get_collects(game->map);
 	game->collected = 0;
 	game->moves = 0;
 	game->lines = 0;
@@ -105,8 +106,6 @@ void player_move(char c, t_data *game)
 
 int keypress(int key, t_data *game)
 {
-	ft_printf("pressed: %d\n", key);
-
 	if (key == XK_a || key == XK_Left)
 		player_move('l', game);
 
@@ -134,18 +133,17 @@ int	main(int argc, char **argv)
 		return (print_error("mlx_init"), 1);
 	if (argc >= 2)
 	{
-		init_struct(&game);
 
 		game.map = parse_map(argv[1]);
 		if (!game.map)
-			return (1);
+		return (1);
 
+		init_struct(&game);
 		//! returns map with all lower
-		game.player = get_player_pos(game.map);
 		print_player_coords(game.player);
 	}
 	else
-		return (print_error("Missing argument"), 1);
+		return (print_error("Missing path/to/map"), 1);
 
 	game.win_ptr = mlx_new_window(game.mlx_ptr, 600, 400, "Window Name");
 
