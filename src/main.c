@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/25 12:34:17 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:36:03 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,20 @@ void print_map(char **map) {
     }
 }
 
+void init_struct(t_data *game)
+{
+	game->total_collects = 0;
+	game->collected = 0;
+	game->moves = 0;
+	game->lines = 0;
+	game->cols = 0;
+}
 
 void print_player_coords(int *player_coords) {
     if (player_coords != NULL) {
-        printf("Player coordinates: (row %d, col %d)\n", player_coords[0], player_coords[1]);
+        ft_printf("Player coordinates: (row %d, col %d)\n", player_coords[0], player_coords[1]);
     } else {
-        printf("Player coordinates not found.\n");
+        ft_printf("Player coordinates not found.\n");
     }
 }
 
@@ -44,6 +52,17 @@ int quit_game(t_data *game)
 	return (0);
 }
 
+void handle_exit(t_data *game)
+{
+	if(game->collected == game->total_collects)
+	{
+		ft_printf("You got all collectables!\n");
+		quit_game(game);
+	}
+	else
+		ft_printf("You're still missing %d collectables!\n", game->total_collects - game->collected);
+}
+
 void move_handler(int col_offset, int row_offset, t_data *game)
 {
 	int new_col;
@@ -54,10 +73,21 @@ void move_handler(int col_offset, int row_offset, t_data *game)
 
 	if(game->map[new_row][new_col] != '1')
 	{
-		game->map[game->player[0]][game->player[1]] = 'f';
+		if(game->map[new_row][new_col] == 'c')
+		{
+			game->collected += 1;
+			ft_printf("Collected %d out of %d\n",game->collected, game->total_collects);
+		}
+		if(game->map[new_row][new_col] == 'e')
+			handle_exit(game);
+		game->map[game->player[0]][game->player[1]] = '0';
 		game->map[new_row][new_col] = 'P';
-	}
+		game->player[0] = new_row;
+		game->player[1] = new_col;
+		game->moves += 1;
+		ft_printf("%d moves\n",game->moves);
 
+	}
 	print_map(game->map);
 }
 
@@ -77,16 +107,16 @@ int keypress(int key, t_data *game)
 {
 	ft_printf("pressed: %d\n", key);
 
-	if (key == XK_Left)
+	if (key == XK_a || key == XK_Left)
 		player_move('l', game);
 
-	if (key == XK_Up)
+	if (key == XK_w || key == XK_Up)
 		player_move('u', game);
 
-	if (key == XK_Right)
+	if (key == XK_d || key == XK_Right)
 		player_move('r', game);
 
-	if (key == XK_Down)
+	if (key == XK_s || key == XK_Down)
 		player_move('d', game);
 
 	if (key == XK_Escape)
@@ -101,15 +131,16 @@ int	main(int argc, char **argv)
 
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
-		return (1);
-
+		return (print_error("mlx_init"), 1);
 	if (argc >= 2)
 	{
+		init_struct(&game);
+
 		game.map = parse_map(argv[1]);
 		if (!game.map)
 			return (1);
 
-		//! returns map with all lower, missing flood fix
+		//! returns map with all lower
 		game.player = get_player_pos(game.map);
 		print_player_coords(game.player);
 	}
