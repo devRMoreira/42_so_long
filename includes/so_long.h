@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:59:29 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/25 12:23:17 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/02/26 13:19:31 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ typedef	struct s_data
 	void 	*win_ptr; //needs free
 	void 	*xpm[5]; //needs free
 	int		*player; //needs free
+	int		total_collects;
+	int		collected;
+	int		moves;
 	int		lines;
 	int 	cols;
 }		t_data;
