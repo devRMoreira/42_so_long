@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:59:29 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/26 13:47:00 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:19:14 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ typedef	struct s_data
 	int		total_collects;
 	int		collected;
 	int		moves;
-	int		lines;
-	int 	cols;
+	int		height;
+	int 	width;
+	int		size;
 }		t_data;
 
 char	**parse_map(char *file);
@@ -47,6 +48,6 @@ int		valid_chars(char **map);
 int		is_lower(int c);
 int		is_completable(char **map);
 void	print_map(char **map);
-int get_collects(char **map);
+int		get_collects(char **map);
 
 #endif
