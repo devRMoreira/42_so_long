@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 17:15:09 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/13 12:14:47 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:57:15 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ char	**parse_map(char *file)
 	map = get_map(file);
 	if (!valid_map(map))
 		return (free_map(map), NULL);
-	is_completable(map);
+
+	if(!is_completable(map))
+	{
+		free_map(map);
+		map = NULL;
+	}
 	return (map);
 }
