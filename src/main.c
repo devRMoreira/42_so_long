@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/03 11:10:06 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:42:52 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char **argv)
 {
 	t_data game;
-
+	ft_memset(&game, 0, sizeof(t_data));
 	if (argc == 2)
 	{
 		game.map = parse_map(argv[1]);
