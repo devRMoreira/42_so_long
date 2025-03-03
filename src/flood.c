@@ -6,54 +6,51 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:16:02 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/03 11:14:56 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:52:40 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static void floodfill(char **map, int row, int col)
+static void	floodfill(char **map, int row, int col)
 {
 	if (col < 0 || row < 0 || map[row] == NULL || map[row][col] == '\0')
 		return ;
-	if(is_lower(map[row][col]) || map[row][col] == '1')
+	if (is_lower(map[row][col]) || map[row][col] == '1')
 		return ;
-	if(map[row][col] == 'f')
+	if (map[row][col] == 'f')
 		return ;
-	if(ft_isalpha(map[row][col]))
+	if (ft_isalpha(map[row][col]))
 		map[row][col] += 32;
-	if(map[row][col] == '0')
+	if (map[row][col] == '0')
 		map[row][col] = 'f';
-
 	floodfill(map, row, col + 1);
 	floodfill(map, row, col - 1);
 	floodfill(map, row + 1, col);
-	floodfill(map, row - 1, col );
+	floodfill(map, row - 1, col);
 }
 
-int is_completable(char **map)
+int	is_completable(char **map)
 {
-	int *coords;
-	int i;
-	int j;
+	int		*coords;
+	int		i;
+	int		j;
 
 	coords = get_player_pos(map);
-	if(!coords)
+	if (!coords)
 		return (0);
 	floodfill(map, coords[0], coords[1]);
-
 	i = 0;
 	while (map[i] != NULL)
 	{
 		j = 0;
-		while(map[i][j] != '\0')
+		while (map[i][j] != '\0')
 		{
-			if(map[i][j] == 'C' || map[i][j] == 'E')
+			if (map[i][j] == 'C' || map[i][j] == 'E')
 				return (free(coords), 0);
 			j++;
 		}
 		i++;
 	}
-
-	return(free(coords), 1);
+	return (free(coords), 1);
 }

@@ -40,26 +40,26 @@ void	free_map(char **map)
 	}
 }
 
-static char *fetch_line(int fd)
+static char	*fetch_line(int fd)
 {
-	char *n_pos;
-	char *temp;
+	char	*nl_pos;
+	char	*temp;
 
 	temp = ft_get_next_line(fd);
-	if(temp)
+	if (temp)
 	{
-		n_pos = ft_strchr(temp, '\n');
-		if(n_pos)
-			*n_pos = '\0';
+		nl_pos = ft_strchr(temp, '\n');
+		if (nl_pos)
+			*nl_pos = '\0';
 	}
 	return (temp);
 }
 
-static int get_total_lines(char *file)
+static int	get_total_lines(char *file)
 {
-	int fd;
-	int i;
-	char* temp;
+	int		fd;
+	int		i;
+	char	*temp;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
@@ -79,19 +79,19 @@ static int get_total_lines(char *file)
 
 char	**get_map(char *file)
 {
-	int i;
-	int fd;
-	int lines;
-	char **map;
+	int		i;
+	int		fd;
+	int		lines;
+	char	**map;
 
 	lines = get_total_lines(file);
-	if(lines < 3)
+	if (lines < 3)
 		return (print_error("Invalid map"), NULL);
 	map = malloc(sizeof(char *) * (lines + 1));
-	if(!map)
+	if (!map)
 		return (print_error("Malloc failure"), NULL);
 	fd = open(file, O_RDONLY);
-	if(fd < 0)
+	if (fd < 0)
 		return (print_error("Invalid file"), NULL);
 	i = -1;
 	while (++i < lines)
