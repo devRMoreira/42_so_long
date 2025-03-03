@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:16:02 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/02/26 13:26:16 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:56 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,22 @@ int is_completable(char **map)
 	int j;
 
 	coords = get_player_pos(map);
+	if(!coords)
+		return (0);
 	floodfill(map, coords[0], coords[1]);
 
+	i = 0;
 	while (map[i] != NULL)
 	{
 		j = 0;
 		while(map[i][j] != '\0')
 		{
 			if(map[i][j] == 'C' || map[i][j] == 'E')
-				return (0);
+				return (free(coords), 0);
 			j++;
 		}
 		i++;
 	}
-	return(1);
+
+	return(free(coords), 1);
 }
