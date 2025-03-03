@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/03 11:42:52 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:49:49 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 			return (free_game(&game), 1);
 	}
 	else
-		return (print_error("Missing path/to/map"), 1);
+		return (print_error("Invalid arguments > ./so_long path/to/map.ber"), 1);
 
 	init_struct(&game);
 	mlx_hook(game.win_ptr, KeyPress, KeyPressMask, &keypress, &game);
