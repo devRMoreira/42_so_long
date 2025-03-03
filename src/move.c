@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:39:43 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/03 11:56:44 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:10:23 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ static void	handle_exit(t_data *game)
 	{
 		ft_printf("You got all collectables!\n");
 		quit_game(game);
+	}
+}
+
+static void	render_previous(t_data *game)
+{
+	if (game->previous == 'e')
+	{
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[4],
+			game->player[1] * game->size, game->player[0] * game-> size);
+		game->map[game->player[0]][game->player[1]] = 'e';
+	}
+	else
+	{
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[0],
+			game->player[1] * game->size, game->player[0] * game-> size);
+		game->map[game->player[0]][game->player[1]] = '0';
 	}
 }
 
@@ -61,14 +77,13 @@ void	move_handler(int col_offset, int row_offset, t_data *game)
 			game->collected += 1;
 		if (game->map[new_row][new_col] == 'e')
 			handle_exit(game);
-		game->map[game->player[0]][game->player[1]] = '0';
+		render_previous(game);
+		game->previous = game->map[new_row][new_col];
 		game->map[new_row][new_col] = 'P';
-		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[0],
-			game->player[1] * game->size, game->player[0] * game-> size);
 		game->player[0] = new_row;
 		game->player[1] = new_col;
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[2],
-			new_col * game->size, new_row * game-> size);
+			new_col * game->size, new_row * game->size);
 		game->moves += 1;
 		ft_printf("%d moves\n", game->moves);
 	}

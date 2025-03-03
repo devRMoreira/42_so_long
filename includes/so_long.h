@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:59:29 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/03 13:37:41 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 18:57:52 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 	int		height;
 	int		width;
 	int		size;
+	char	previous;
 }		t_data;
 
 int		quit_game(t_data *game);
