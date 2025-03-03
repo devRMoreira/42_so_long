@@ -30,7 +30,7 @@ OBJ = $(SRC:.c=.o)
 
 LIBFT_DIR = lib/libft
 LIBFT = $(LIBFT_DIR)/libft.a
-MLX_DIR = lib/mlx
+MLX_DIR = lib/minilibx-linux
 MLX = $(MLX_DIR)/libmlx.a
 
 all: $(NAME)

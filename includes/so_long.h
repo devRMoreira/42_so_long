@@ -13,7 +13,7 @@
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "../lib/mlx/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 # include "../lib/libft/libft.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
