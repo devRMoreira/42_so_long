@@ -6,20 +6,11 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:47:57 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/01 16:39:03 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:37:31 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-#include <stdio.h>
-
-void print_map(char **map) {
-    int i = 0;
-    while (map[i]) {
-        printf("%s\n", map[i]);
-        i++;
-    }
-}
 
 int get_height(char **map)
 {
@@ -50,14 +41,6 @@ void init_struct(t_data *game)
 	game->height = get_height(game->map);
 	game->width = ft_strlen(game->map[0]);
 	get_xpms(game);
-}
-
-void print_player_coords(int *player_coords) {
-    if (player_coords != NULL) {
-        ft_printf("Player coordinates: (row %d, col %d)\n", player_coords[0], player_coords[1]);
-    } else {
-        ft_printf("Player coordinates not found.\n");
-    }
 }
 
 void	print_error(char *descriptor)
@@ -112,7 +95,7 @@ void render_game(t_data *game)
 		col = 0;
 		while(col < game->width)
 		{
-			id = get_xpm_id(game->map[col][row]);
+			id = get_xpm_id(game->map[row][col]);
 			mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[id], col * game->size, row * game-> size);
 			col++;
 		}
@@ -140,8 +123,11 @@ void move_handler(int col_offset, int row_offset, t_data *game)
 			handle_exit(game);
 		game->map[game->player[0]][game->player[1]] = '0';
 		game->map[new_row][new_col] = 'P';
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[0], game->player[1] * game->size, game->player[0] * game-> size);
+
 		game->player[0] = new_row;
 		game->player[1] = new_col;
+		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->xpm[2], new_col * game->size, new_row * game-> size);
 		game->moves += 1;
 		ft_printf("%d moves\n",game->moves);
 
@@ -236,7 +222,7 @@ int	main(int argc, char **argv)
 		return (free(game.mlx_ptr), 1);
 	print_struct(&game);
 
-	// render_game(&game);
+	render_game(&game);
 	mlx_hook(game.win_ptr, KeyPress, KeyPressMask, keypress, &game);
 	mlx_hook(game.win_ptr, DestroyNotify, StructureNotifyMask, quit_game, &game);
 	mlx_loop(game.mlx_ptr);
