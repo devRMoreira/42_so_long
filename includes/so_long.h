@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:59:29 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/01 16:19:14 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:07:55 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef	struct s_data
 	int		size;
 }		t_data;
 
+int		quit_game(t_data *game);
 char	**parse_map(char *file);
 char	**get_map(char *file);
 void	free_map(char **map);
@@ -47,7 +48,12 @@ int		valid_walls(char **map);
 int		valid_chars(char **map);
 int		is_lower(int c);
 int		is_completable(char **map);
-void	print_map(char **map);
+int		keypress(int key, t_data *game);
 int		get_collects(char **map);
+void	render_game(t_data *game);
+void	move_handler(int col_offset, int row_offset, t_data *game);
+void	init_struct(t_data *game);
+void	free_game(t_data *game);
+
 
 #endif

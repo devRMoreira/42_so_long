@@ -6,7 +6,7 @@
 #    By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 14:57:41 by rimagalh          #+#    #+#              #
-#    Updated: 2025/02/17 15:26:18 by rimagalh         ###   ########.fr        #
+#    Updated: 2025/03/03 10:48:04 by rimagalh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,15 @@ CC = cc
 NAME = so_long
 
 SRC = src/main.c \
+	src/flood.c \
+	src/flood_utils.c \
+	src/move.c \
 	src/parse.c \
 	src/parse_utils.c \
+	src/render.c \
+	src/utils.c \
 	src/validation.c \
 	src/validation_utils.c \
-	src/flood.c \
-	src/flood_utils.c
 
 OBJ = $(SRC:.c=.o)
 
