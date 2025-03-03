@@ -6,7 +6,7 @@
 /*   By: rimagalh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 10:40:32 by rimagalh          #+#    #+#             */
-/*   Updated: 2025/03/03 11:12:11 by rimagalh         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:44:19 by rimagalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,34 +67,26 @@ void free_game(t_data *game)
 
     if (game->map)
     {
-        for (i = 0; game->map[i] != NULL; i++)
-        {
+		i = -1;
+        while(game->map[++i] != NULL)
             free(game->map[i]);
-        }
         free(game->map);
     }
-
     if (game->mlx_ptr)
     {
         if (game->win_ptr)
         {
             mlx_destroy_window(game->mlx_ptr, game->win_ptr);
         }
-        for (i = 0; i < 5; i++)
-        {
+		i = -1;
+        while(++i < 5)
             if (game->xpm[i])
-            {
                 mlx_destroy_image(game->mlx_ptr, game->xpm[i]);
-            }
-        }
         mlx_destroy_display(game->mlx_ptr);
         free(game->mlx_ptr);
     }
-
     if (game->player)
-    {
         free(game->player);
-    }
 }
 
 
