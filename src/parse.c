@@ -41,7 +41,7 @@ char	**parse_map(char *file)
 		return (print_error("Invalid file name"), NULL);
 	map = get_map(file);
 	if (!valid_map(map))
-		return (free_map(map), NULL);
+		return (print_error("Uncompletable map"), free_map(map), NULL);
 	if (!is_completable(map))
 	{
 		free_map(map);
